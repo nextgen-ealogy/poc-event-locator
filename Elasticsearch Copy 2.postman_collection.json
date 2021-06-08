@@ -1,0 +1,3339 @@
+{
+	"info": {
+		"_postman_id": "4b8f0226-a02e-4446-8420-8c24add7a595",
+		"name": "Elasticsearch Copy 2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Base",
+			"item": [
+				{
+					"name": "post new doc",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"jojo\",\r\n  \"directors\": \"Charlie\"\r\n}\r\n"
+						},
+						"url": {
+							"raw": "http://localhost:9200/movies/_doc",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"movies",
+								"_doc"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "rechercher un film",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:9200/music/_doc/979fwnkBEH0usymV-cu-",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"music",
+								"_doc",
+								"979fwnkBEH0usymV-cu-"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "modifier content",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"titanic\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:9200/movies/_doc/FoFXwnkBMXeLk60ivaUR",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"movies",
+								"_doc",
+								"FoFXwnkBMXeLk60ivaUR"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete par id",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:9200/movies/_doc/wsPPwXkBwtTc2l_C5G2v",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"movies",
+								"_doc",
+								"wsPPwXkBwtTc2l_C5G2v"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "settings nb shards/replicas",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"settings\" : {\r\n  \"number_of_shards\" : 3,\r\n  \"number_of_replicas\" : 2\r\n  }\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:9200/movies/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"movies",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "setting nb replicas",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"index\" : {\r\n  \"number_of_replicas\" : 2\r\n  }\r\n}\r\n"
+						},
+						"url": {
+							"raw": "http://localhost:9200/movies/_settings",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"movies",
+								"_settings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "cluster/health",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9200/_cluster/health",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"_cluster",
+								"health"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Post-recherche",
+			"item": [
+				{
+					"name": "recherche par nom",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9200/movies/_search?q=titanic",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"movies",
+								"_search"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "titanic"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "recherche par taille",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9200/movies/_search?q=title:titanic&size=5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"movies",
+								"_search"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "title:titanic"
+								},
+								{
+									"key": "size",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "recherche nom/taille/from",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9200/movies/_search?q=title:titanic&size=5&from=10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"movies",
+								"_search"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "title:titanic"
+								},
+								{
+									"key": "size",
+									"value": "5"
+								},
+								{
+									"key": "from",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "recherche nom/sort:title",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9200/movies/_search?q=title:titanic&sort:title",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"movies",
+								"_search"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "title:titanic"
+								},
+								{
+									"key": "sort:title",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "DELETE index",
+			"item": [
+				{
+					"name": "delete single",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:9200/movies",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"movies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete plusieurs index",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9200/movies,albums",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"movies,albums"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete all",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9200/_all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"_all"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Open/Close API",
+			"item": [
+				{
+					"name": "API open",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9200/twitter/_open",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"twitter",
+								"_open"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "API close",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9200/twitter/_close",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"twitter",
+								"_close"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Bulk API",
+			"item": [
+				{
+					"name": "bulk parm/body",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"index\":{\"_index\":\"cart\",\"_id\":1,\"_type\":\"_doc\"}}\r\n{\"id\":1,\"title\":\"iPhone 11\",\"category\":\"Mobile Phone\",\"price\":123300,\"formatted_price\":\"$1233.00 USD\",\"description\":\"iPhone 11, 64 GB \"}\r\n{\"index\":{\"_index\":\"cart\",\"_id\":2,\"_type\":\"_doc\"}}\r\n{\"id\":2,\"title\":\"iPhone 11 Pro\",\"category\":\"Mobile Phone\",\"price\":143300,\"formatted_price\":\"$1433.00 USD\",\"description\":\"iPhone 11 Pro, 128 GB \"}\r\n{\"index\":{\"_index\":\"cart\",\"_id\":3,\"_type\":\"_doc\"}}\r\n{\"id\":3,\"title\":\"iPhone X\",\"category\":\"Mobile Phone\",\"price\":103300,\"formatted_price\":\"$1033.00 USD\",\"description\":\"iPhone X, 128 GB \"}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9200/cart/_bulk/?pretty",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"cart",
+								"_bulk",
+								""
+							],
+							"query": [
+								{
+									"key": "pretty",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "refresh interval augmenter",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"refresh_interval\": \"-1\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:9200/movies/_settings",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"movies",
+								"_settings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "refresh 30 secondes",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"refresh_interval\": \"30s\"\r\n}\r\n"
+						},
+						"url": {
+							"raw": "http://localhost:9200/movies/_settings",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"movies",
+								"_settings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "bulk param body (invalide)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \"index\" : { \"_index\" : \"movies18\", \"_id\" : \"1\" } }\r\n{ \"field1\" : \"value1\" }\r\n{ \"delete\" : { \"_index\" : \"movies18\", \"_id\" : \"2\" } }\r\n{ \"update\" : {\"_id\" : \"1\", \"_index\" : \"movies18\"} }\r\n{ \"doc\" : {\"field2\" : \"value2\"} }"
+						},
+						"url": {
+							"raw": "http://localhost:9200/movies18/_bulk/?pretty",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"movies18",
+								"_bulk",
+								""
+							],
+							"query": [
+								{
+									"key": "pretty",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Alias",
+			"item": [
+				{
+					"name": "ajout d'alias dans un index",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"aliases\" : {\r\n  \"all\" : {},\r\n  \"horreur\" : {\r\n  \"filter\" : {\r\n  \"term\" : {\"type\" : \"horreur\" }\r\n  }\r\n  }\r\n  }\r\n}\r\n"
+						},
+						"url": {
+							"raw": "http://localhost:9200/movies",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"movies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ajout d'alias",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"actions\" : [\r\n  { \"add\" : { \"index\" : \"movies\", \"alias\" : \"movies-v1\" } }\r\n  ]\r\n}\r\n"
+						},
+						"url": {
+							"raw": "http://localhost:9200/_aliases",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"_aliases"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "supprimer un alias",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"actions\" : [\r\n  { \"remove\" : { \"index\" : \"movies\", \"alias\" : \"movies-v1\" } }\r\n  ]\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:9200/_aliases",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"_aliases"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "alias action groupée",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"actions\" : [\r\n  { \"remove\" : { \"index\" : \"movies\", \"alias\" : \"movies-v2\" } },\r\n  { \"add\" : { \"index\" : \"movies\", \"alias\" : \"movies-v5\" } }\r\n  ]\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:9200/_aliases",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"_aliases"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Configuration de l'alias",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"actions\": [\r\n  {\r\n  \"remove\": {\r\n  \"alias\": \"movies14\",\r\n  \"index\": \"movies_v1\"\r\n  }\r\n  },\r\n  {\r\n  \"add\": {\r\n  \"alias\": \"movies14\",\r\n  \"index\": \"movies_v2\"\r\n  }\r\n  }\r\n  ]\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:9200/_aliases",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"_aliases"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Test API",
+			"item": [
+				{
+					"name": "Update index settings API",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"index\" : {\r\n    \"number_of_replicas\" : 2\r\n  }\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:9200/movies/_settings",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"movies",
+								"_settings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update/delete doc in a backing index",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"seq_no_primary_term\": true,\r\n  \"query\": {\r\n    \"match\": {\r\n      \"user.id\": \"979fwnkBEH0usymV-cu-\"\r\n    }\r\n  }\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:9200/music/_search",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"music",
+								"_search"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update by query API",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "POST /my-data-stream/_update_by_query\r\n{\r\n  \"query\": {\r\n    \"match\": {\r\n      \"user.id\": \"l7gk7f82\"\r\n    }\r\n  },\r\n  \"script\": {\r\n    \"source\": \"ctx._source.user.id = params.new_id\",\r\n    \"params\": {\r\n      \"new_id\": \"XgdX0NoX\"\r\n    }\r\n  }\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:9200/my-data-stream/_update_by_query",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"my-data-stream",
+								"_update_by_query"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update doc idex API",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"@timestamp\": \"2099-03-08T11:06:07.000Z\",\r\n  \"user\": {\r\n    \"id\": \"979fwnkBEH0usymV-cu-\"\r\n  },\r\n  \"message\": \"Login successful\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:9200/music/_doc/979fwnkBEH0usymV-cu-",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"music",
+								"_doc",
+								"979fwnkBEH0usymV-cu-"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Mapping",
+			"item": [
+				{
+					"name": "créer un mapping",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"mappings\": {\r\n  \"properties\": {\r\n  \"title\": { \"type\": \"text\" },\r\n  \"directors\": { \"type\": \"text\" }\r\n  }\r\n  }\r\n}\r\n"
+						},
+						"url": {
+							"raw": "http://localhost:9200/movies/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"movies",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "récupérer un mapping",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:9200/movies/_mapping",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"movies",
+								"_mapping"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "supprimer un index",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:9200/movies/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"movies",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "test créer un mapping",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"movies2\": {\r\n    \"aliases\": {},\r\n    \"mappings\": {\r\n      \"movie\": {\r\n        \"properties\": {\r\n          \"fields\": {\r\n            \"properties\": {\r\n              \"actors\": {\r\n                \"type\": \"text\",\r\n                \"fields\": {\"raw\": {\"type\": \"keyword\"}}\r\n              },\r\n              \"directors\": {\r\n                \"type\": \"text\",\r\n                \"fields\": {\"raw\": {\"type\": \"keyword\"}}\r\n              },\r\n              \"genres\": {\r\n                \"type\": \"text\",\r\n                \"fields\": {\"raw\": {\"type\": \"keyword\"}}\r\n              },\r\n              \"image_url\": {\r\n                \"type\": \"text\",\r\n                \"fields\": {\"raw\": {\"type\": \"keyword\"}}\r\n              },\r\n              \"plot\": {\r\n                \"type\": \"text\",\r\n                \"fields\": {\"keyword\": {\"type\": \"keyword\",\"ignore_above\": 256}}\r\n              },\r\n              \"rank\": {\r\n                \"type\": \"long\"\r\n              },\r\n              \"rating\": {\r\n                \"type\": \"float\"\r\n              },\r\n              \"release_date\": {\r\n                \"type\": \"date\"\r\n              },\r\n              \"running_time_secs\": {\r\n                \"type\": \"long\"\r\n              },\r\n              \"title\": {\r\n                \"type\": \"text\",\r\n                \"fields\": {\"keyword\": {\"type\": \"keyword\",\"ignore_above\": 256}\r\n                }\r\n             },\r\n              \"year\": {\r\n                \"type\": \"long\"\r\n              }\r\n            }\r\n          },\r\n          \"id\": {\r\n            \"type\": \"text\",\r\n            \"fields\": {\"keyword\": {\"type\": \"keyword\",\"ignore_above\": 256}}\r\n          },\r\n          \"type\": {\r\n            \"type\": \"text\",\r\n            \"fields\": {\"keyword\": {\"type\": \"keyword\",\"ignore_above\": 256}}\r\n          }\r\n        }\r\n      }\r\n    },\r\n    \"settings\": {\r\n      \"index\": {\r\n        \"creation_date\": \"1506695662981\",\r\n        \"number_of_shards\": \"5\",\r\n        \"number_of_replicas\": \"1\",\r\n        \"uuid\": \"JYb2VcMARuCgrb5yHtwJyQ\",\r\n        \"version\": {\r\n          \"created\": \"5060299\"\r\n        },\r\n        \"provided_name\": \"movies2\"\r\n      }\r\n    }\r\n  }\r\n}\r\n"
+						},
+						"url": {
+							"raw": "http://localhost:9200/movies2/_doc",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"movies2",
+								"_doc"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Index",
+			"item": [
+				{
+					"name": "ajouter un doc sans indexer",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"mappings\": {\r\n  \"properties\": {\r\n  \"dialogues\": {\r\n  \"type\": \"text\",\r\n  \"index\": false\r\n  }\r\n  }\r\n  }\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:9200/movies/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"movies",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ajouter un doc sans _source (performance)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"mappings\": {\r\n  \"_source\": {\r\n  \"enabled\": false\r\n  }\r\n  }\r\n}\r\n"
+						},
+						"url": {
+							"raw": "http://localhost:9200/movies/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"movies",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Fields",
+			"item": [
+				{
+					"name": "définition de fields",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"mappings\": {\r\n  \"properties\": {\r\n  \"directors\": {\r\n  \"type\": \"text\",\r\n  \"fields\": {\r\n  \"keyword\": {\r\n  \"type\": \"keyword\"\r\n  }\r\n  }\r\n  }\r\n  }\r\n  }\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:9200/movies/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"movies",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "recherche catégorie",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"query\": {\r\n  \"directors\": \"Charlie\"\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9200/movies8/_search",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"movies8",
+								"_search"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "recherche keyword",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"query\": {\r\n  \"match\":{\r\n  \"directors.keyword\": \"Charlie Chaplin\"\r\n  }\r\n  }\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9200/movies/_search",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"movies",
+								"_search"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Object versus Nested",
+			"item": [
+				{
+					"name": "Object",
+					"item": [
+						{
+							"name": "index en Object",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"mappings\": {\r\n  \"properties\": {\r\n  \"directors\": {\r\n  \"properties\": {\r\n  \"firstName\" : { \"type\": \"text\" },\r\n  \"lastName\" : { \"type\": \"text\" }\r\n  }\r\n  }\r\n  }\r\n  }\r\n}"
+								},
+								"url": {
+									"raw": "http://localhost:9200/movies8/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9200",
+									"path": [
+										"movies8",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "ajout de variable dans index",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"directors\": [\r\n  {\"firstName\": \"Charlie\", \"lastName\": \"Chaplin\"},\r\n  {\"firstName\": \"Buster\", \"lastName\": \"Keaton\"}\r\n  ]\r\n}"
+								},
+								"url": {
+									"raw": "http://localhost:9200/movies8/_doc",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9200",
+									"path": [
+										"movies8",
+										"_doc"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "recherche par variable",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"query\": {\r\n  \"bool\":{\r\n  \"must\": [\r\n  { \"match\": {\"directors.firstName\": \"Charlie\" }},\r\n  { \"match\": {\"directors.lastName\": \"Keaton\" }}\r\n  ]\r\n  }\r\n  }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:9200/movies8/_search",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9200",
+									"path": [
+										"movies8",
+										"_search"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Nested",
+					"item": [
+						{
+							"name": "index en Nested",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"mappings\": {\r\n  \"properties\": {\r\n  \"directors\": {\r\n  \"type\": \"nested\",\r\n  \"properties\": {\r\n  \"firstName\" : { \"type\": \"text\" },\r\n  \"lastName\" : { \"type\": \"text\" }\r\n  }\r\n  }\r\n  }\r\n  }\r\n}\r\n"
+								},
+								"url": {
+									"raw": "http://localhost:9200/movies9/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9200",
+									"path": [
+										"movies9",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Querry",
+			"item": [
+				{
+					"name": "Range",
+					"item": [
+						{
+							"name": "Range Query gte/lte",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"query\": {\r\n  \"range\" : {\r\n  \"duration\" : {\r\n  \"gte\" : 100,\r\n  \"lte\" : 200,\r\n   \"boost\": 2.0\r\n  }\r\n  }\r\n  }\r\n}"
+								},
+								"url": {
+									"raw": "http://localhost:9200/movies/_search",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9200",
+									"path": [
+										"movies",
+										"_search"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Range Query gte",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"query\": {\r\n  \"range\" : {\r\n  \"timestamp\" : {\r\n  \"gte\": \"2020-01-01T00:00:00\"\r\n  }\r\n  }\r\n  }\r\n}\r\n"
+								},
+								"url": {
+									"raw": "http://localhost:9200/movies/_search",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9200",
+									"path": [
+										"movies",
+										"_search"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Range Query gte/lt",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"query\": {\r\n  \"range\" : {\r\n  \"timestamp\" : {\r\n  \"gte\" : \"now-1d/d\",\r\n  \"lt\" : \"now/d\"\r\n  }\r\n  }\r\n  }\r\n}"
+								},
+								"url": {
+									"raw": "http://localhost:9200/movies/_search",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9200",
+									"path": [
+										"movies",
+										"_search"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Fuzzy Query",
+					"item": [
+						{
+							"name": "Fuzzy query",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"query\": {\r\n  \"fuzzy\": {\r\n  \"title\": {\r\n  \"value\": \"tiatnic\"\r\n  }\r\n  }\r\n  }\r\n}\r\n"
+								},
+								"url": {
+									"raw": "http://localhost:9200/movies/_search",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9200",
+									"path": [
+										"movies",
+										"_search"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Wildcard",
+					"item": [
+						{
+							"name": "Wildcard Query",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"query\": {\r\n  \"wildcard\": {\r\n  \"title\": {\r\n  \"value\": \"Tita*c\"\r\n  }\r\n  }\r\n  }\r\n}"
+								},
+								"url": {
+									"raw": "http://localhost:9200/movies/_search",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9200",
+									"path": [
+										"movies",
+										"_search"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Filtres",
+					"item": [
+						{
+							"name": "filtres oui ou non",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"query\": {\r\n  \"constant_score\" : {\r\n  \"filter\" : {\r\n  \"term\" : { \"title\" : \"Titanic\"}\r\n  }\r\n  }\r\n  }\r\n}"
+								},
+								"url": {
+									"raw": "http://localhost:9200/movies/_search",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9200",
+									"path": [
+										"movies",
+										"_search"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "pagination",
+					"item": [
+						{
+							"name": "Pagination from/size",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\r\n  \"query\": {\r\n  \"match\" : {\r\n  \"title\" : \"Titanic\"\r\n  }\r\n  }\r\n}"
+								},
+								"url": {
+									"raw": "http://localhost:9200/movies?scroll=1m",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9200",
+									"path": [
+										"movies"
+									],
+									"query": [
+										{
+											"key": "scroll",
+											"value": "1m"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "pagination scroll",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"size\": 100,\r\n  \"query\": {\r\n    \"match\": {\r\n      \"message\": \"foo\"\r\n    }\r\n  }\r\n}"
+								},
+								"url": {
+									"raw": "http://localhost:9200/movies/_search?scroll=1m",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9200",
+									"path": [
+										"movies",
+										"_search"
+									],
+									"query": [
+										{
+											"key": "scroll",
+											"value": "1m"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Score",
+					"item": [
+						{
+							"name": "modifier score",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"query\": {\r\n  \"function_score\": {\r\n  \"query\": {\r\n  \"match\": { \"title\" : \"Titanic\" }\r\n  },\r\n  \"script_score\" : {\r\n  \"script\" : {\r\n  \"source\": \"1.0 / doc['notes'].value\"\r\n  }\r\n  }\r\n  }\r\n  }\r\n}\r\n"
+								},
+								"url": {
+									"raw": "http://localhost:9200/movies/_search",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9200",
+									"path": [
+										"movies",
+										"_search"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Slow Queries",
+					"item": [
+						{
+							"name": "Slow Queries",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"index.search.slowlog.threshold.query.warn\": \"500ms\",\r\n  \"index.search.slowlog.threshold.query.info\": \"250ms\",\r\n  \"index.search.slowlog.threshold.fetch.warn\": \"200ms\",\r\n  \"index.search.slowlog.threshold.fetch.info\": \"100ms\",\r\n  \"index.indexing.slowlog.threshold.index.warn\": \"1s\",\r\n  \"index.indexing.slowlog.threshold.index.info\": \"500ms\",\r\n  \"index.search.slowlog.level\": \"info\"\r\n}\r\n"
+								},
+								"url": {
+									"raw": "http://localhost:9200/movies/_settings",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9200",
+									"path": [
+										"movies",
+										"_settings"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Example request",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"query\": {\r\n    \"simple_query_string\" : {\r\n        \"query\": \"\\\"fried eggs\\\" +(eggplant | potato) -frittata\",\r\n        \"fields\": [\"title^5\", \"body\"],\r\n        \"default_operator\": \"and\"\r\n    }\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9200/movies/_search",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"movies",
+								"_search"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "query string",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"query\": {\r\n  \"query_string\" : {\r\n  \"query\" : \"(new york city) OR (big apple)\",\r\n  \"default_field\" : \"title\"\r\n  }\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9200/movies/_search",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"movies",
+								"_search"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Dynamic Templates",
+			"item": [
+				{
+					"name": "créer index templates dynamiques",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"mappings\": {\r\n  \"dynamic_templates\": [\r\n  {\r\n  \"strings\": {\r\n  \"match_mapping_type\": \"string\",\r\n  \"mapping\": {\r\n  \"type\": \"text\",\r\n  \"fields\": {\r\n  \"keyword\": {\r\n  \"type\": \"keyword\",\r\n  \"ignore_above\": 256\r\n  }\r\n  }\r\n  }\r\n  }\r\n  }\r\n  ]\r\n  }\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:9200/movies10/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"movies10",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "dyna templates /map/geo",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"mappings\": {\r\n    \"dynamic_templates\": [\r\n      {\r\n        \"geo_point\": {\r\n             \"mapping\": {\r\n                \"type\" : \"geo_point\"\r\n             }\r\n        }\r\n      }\r\n    ]\r\n  }\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:9200/my-index",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"my-index"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Analyzers",
+			"item": [
+				{
+					"name": "créer un analyzers custom",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"settings\": {\r\n  \"analysis\": {\r\n  \"analyzer\": {\r\n  \"my_custom_analyzer\": {\r\n  \"type\": \"custom\",\r\n  \"tokenizer\": \"standard\",\r\n  \"char_filter\": [\r\n  \"html_strip\"\r\n  ],\r\n  \"filter\": [\r\n  \"lowercase\",\r\n  \"asciifolding\"\r\n  ]\r\n  }\r\n  }\r\n  }\r\n  }\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:9200/movies11/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"movies11",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "créer un analyzes built-in",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"mappings\": {\r\n  \"properties\": {\r\n  \"title\": {\r\n  \"type\": \"text\",\r\n  \"analyzer\": \"french\"\r\n  }\r\n  }\r\n  }\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:9200/movies12/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"movies12",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "analyze whitespace",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"analyzer\": \"whitespace\",\r\n  \"text\": \"The quick brown fox.\" }"
+						},
+						"url": {
+							"raw": "http://localhost:9200/_analyze",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"_analyze"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "analyze offset",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"tokenizer\": \"standard\",\r\n  \"filter\": [ \"lowercase\", \"asciifolding\" ],\r\n  \"text\": \"Is this déja vu?\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:9200/_analyze",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"_analyze"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Reindex API",
+			"item": [
+				{
+					"name": "réindexer index complet",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"source\": {\r\n  \"index\": \"movies_v1\"\r\n  },\r\n  \"dest\": {\r\n  \"index\": \"movies_v2\"\r\n  }\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:9200/_reindex",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"_reindex"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "réindexer index partiel",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"source\": {\r\n  \"index\": \"movies_v1\",\r\n  \"query\": {\r\n  \"term\": {\r\n  \"year\": 2010\r\n  }\r\n  }\r\n  },\r\n  \"dest\": {\r\n  \"index\": \"movies_v2\"\r\n  }\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:9200/_reindex",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"_reindex"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "reindexer index cluster distant",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"source\": {\r\n  \"remote\": {\r\n  \"host\": \"http://otherhost:9200\"\r\n  },\r\n  \"index\": \"movies_v1\",\r\n  \"query\": {\r\n  \"term\": {\r\n  \"year\": 2010\r\n  }\r\n  }\r\n  },\r\n  \"dest\": {\r\n  \"index\": \"movies_v2\"\r\n  }\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:9200/_reindex",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"_reindex"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Templates",
+			"item": [
+				{
+					"name": "ajouter un template",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"index_patterns\": [\"movies*\"],\r\n  \"settings\": {\r\n  \"number_of_shards\": 1\r\n  },\r\n  \"mappings\": {\r\n  \"_source\": {\r\n  \"enabled\": false\r\n  },\r\n  \"properties\": {\r\n  \"genre\": {\r\n  \"type\": \"keyword\"\r\n  },\r\n  \"date\": {\r\n  \"type\": \"date\",\r\n  \"format\": \"EEE MMM dd HH:mm:ss Z yyyy\"\r\n  }\r\n  }\r\n  }\r\n}\r\n"
+						},
+						"url": {
+							"raw": "http://localhost:9200/_template/movies_template",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"_template",
+								"movies_template"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Recherche",
+			"item": [
+				{
+					"name": "recherche simple",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:9200/movies/_search",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"movies",
+								"_search"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "recherche multiple",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9200/movies,movies/_search",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"movies,movies",
+								"_search"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "recherche par alias",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9200/movies-*/_search",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"movies-*",
+								"_search"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "recherche booléennes",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"query\": {\r\n  \"bool\" : {\r\n  \"must\" : {\r\n  \"term\" : { \"title\" : \"Titanic\" }\r\n  },\r\n  \"must_not\" : {\r\n  \"range\" : {\r\n  \"duration\" : { \"gte\" : 100, \"lte\" : 200 }\r\n  }\r\n  },\r\n  \"should\" : [\r\n  { \"term\" : { \"category\" : \"history\" } },\r\n  { \"term\" : { \"category\" : \"drama\" } }\r\n  ],\r\n  \"filter\": {\r\n  \"term\" : { \"type\" : \"movie\" }\r\n  },\r\n  \"minimum_should_match\" : 1\r\n  }\r\n  }\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:9200/movies/_search",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"movies",
+								"_search"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Lucene",
+			"item": [
+				{
+					"name": "recherche lucene simple",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:9200/movies/_search?q=matrix",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"movies",
+								"_search"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "matrix"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "recherche lucene titre",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:9200/movies/_search?q=title:titanic\n",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"movies",
+								"_search"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "title:titanic\n"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "recherche lucene multiple",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9200/movies/_search?q=title:titanic AND (year:[1990 TO 2000])",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"movies",
+								"_search"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "title:titanic AND (year:[1990 TO 2000])"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "recherc. lucene tri/pagination",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9200/movies/_search?q=titanic&sort=year:desc&size:100",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"movies",
+								"_search"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "titanic"
+								},
+								{
+									"key": "sort",
+									"value": "year:desc"
+								},
+								{
+									"key": "size:100",
+									"value": null
+								},
+								{
+									"key": "from",
+									"value": "101\n",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "DSL Elasticsearch",
+			"item": [
+				{
+					"name": "Recherche DSL elasticsearch",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"query\": {\r\n  \"match_all\": {\r\n  \r\n  }\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9200/movies/_search",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"movies",
+								"_search"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Match",
+			"item": [
+				{
+					"name": "recherche match",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"query\": {\r\n  \"match\" : {\r\n  \"title\" : {\r\n  \"query\" : \"New York\"\r\n  }\r\n  }\r\n  }\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:9200/movies/_search",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"movies",
+								"_search"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "recherche match phrase",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"query\": {\r\n  \"match_phrase\" : {\r\n  \"title\" : \"New York\"\r\n  }\r\n  }\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:9200/movies/_search",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"movies",
+								"_search"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "recherche multi Match",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"query\": {\r\n  \"multi_match\" : {\r\n  \"query\": \"New York\",\r\n  \"fields\": [ \"title\", \"description\" ]\r\n  }\r\n  }\r\n}\r\n"
+						},
+						"url": {
+							"raw": "http://localhost:9200/movies/_search",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"movies",
+								"_search"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "recherche exact",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"query\": {\r\n  \"term\": {\r\n  \"title\": {\r\n  \"value\": \"New york\"\r\n  }\r\n  }\r\n  }\r\n}\r\n"
+						},
+						"url": {
+							"raw": "http://localhost:9200/movies/_search",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"movies",
+								"_search"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Géographique",
+			"item": [
+				{
+					"name": "recherche géographiques",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"mappings\": {\r\n  \"properties\": {\r\n  \"location\": {\r\n  \"type\": \"geo_point\"\r\n  }\r\n  }\r\n  }\r\n}\r\n"
+						},
+						"url": {
+							"raw": "http://localhost:9200/my_locations",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"my_locations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "géo distance",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"query\": {\r\n  \"geo_distance\" : {\r\n  \"distance\" : \"200km\",\r\n  \"location\" : {\r\n  \"lat\" : 40,\r\n  \"lon\" : -70\r\n  }\r\n  }\r\n  }\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:9200/my_locations/_doc/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"my_locations",
+								"_doc",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "recherche géo lati/longi",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"pin\": {\r\n    \"location\": {\r\n      \"lat\": 40.12,\r\n      \"lon\": -71.34\r\n    }\r\n  }\r\n}\r\n"
+						},
+						"url": {
+							"raw": "http://localhost:3000/my_locations/_doc/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"my_locations",
+								"_doc",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "geo_shape",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"mappings\": {\r\n    \"properties\": {\r\n      \"pin\": {\r\n        \"properties\": {\r\n          \"location\": {\r\n            \"type\": \"geo_shape\"\r\n          }\r\n        }\r\n      }\r\n    }\r\n  }\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:9200/my_geoshapes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"my_geoshapes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "geo location polygon coord",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"pin\": {\r\n    \"location\": {\r\n      \"type\" : \"polygon\",\r\n      \"coordinates\" : [[[13.0 ,51.5], [15.0, 51.5], [15.0, 54.0], [13.0, 54.0], [13.0 ,51.5]]]\r\n    }\r\n  }\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:9200/my_geoshapes/_doc/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"my_geoshapes",
+								"_doc",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "geo location search",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"query\": {\r\n    \"bool\": {\r\n      \"must\": {\r\n        \"match_all\": {}\r\n      },\r\n      \"filter\": {\r\n        \"geo_bounding_box\": {\r\n          \"pin.location\": {\r\n            \"top_left\": {\r\n              \"lat\": 40.73,\r\n              \"lon\": -74.1\r\n            },\r\n            \"bottom_right\": {\r\n              \"lat\": 40.01,\r\n              \"lon\": -71.12\r\n            }\r\n          }\r\n        }\r\n      }\r\n    }\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9200/my_geoshapes/_search",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"my_geoshapes",
+								"_search"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "geo point/shape search",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"query\": {\r\n    \"bool\": {\r\n      \"must\": {\r\n        \"match_all\": {}\r\n      },\r\n      \"filter\": {\r\n        \"geo_bounding_box\": {\r\n          \"pin.location\": {\r\n            \"top_left\": {\r\n              \"lat\": 40.73,\r\n              \"lon\": -74.1\r\n            },\r\n            \"bottom_right\": {\r\n              \"lat\": 40.01,\r\n              \"lon\": -71.12\r\n            }\r\n          }\r\n        }\r\n      }\r\n    }\r\n  }\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:9200/my_locations,my_geoshapes/_search",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"my_locations,my_geoshapes",
+								"_search"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Tri",
+			"item": [
+				{
+					"name": "New Request",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"query\": {\r\n  ...\r\n  },\r\n  \"sort\": {\r\n  { \"timestamp\": { \"order\": \"desc\" }},\r\n  { \"_score\": { \"order\": \"desc\" }}\r\n  }\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:9200/movies/_search",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"movies",
+								"_search"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Cross Cluster",
+			"item": [
+				{
+					"name": "Cross Cluster settings",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"persistent\": {\r\n  \"cluster\": {\r\n  \"remote\": {\r\n  \"cluster_one\": {\r\n  \"seeds\": [\r\n  \"127.0.0.1:9300\"\r\n  ]\r\n  }\r\n  }\r\n  }\r\n  }\r\n}\r\n"
+						},
+						"url": {
+							"raw": "http://localhost:9200/_cluster/settings",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"_cluster",
+								"settings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cross Cluster Search",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"query\": {\r\n  \"match\": {\r\n  \"title\": \"Titanic\"\r\n  }\r\n  }\r\n}\r\n"
+						},
+						"url": {
+							"raw": "http://localhost:9200/cluster_one:movies/_search",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"cluster_one:movies",
+								"_search"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Agrégations",
+			"item": [
+				{
+					"name": "Agrégations",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"aggs\": {\r\n    \"avg_grade\": { \"avg\": { \"field\": \"grade\" } }\r\n  }\r\n}\r\n"
+						},
+						"url": {
+							"raw": "http://localhost:9200/exams/_search?size=0\n",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"exams",
+								"_search"
+							],
+							"query": [
+								{
+									"key": "size",
+									"value": "0\n"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "json",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"runtime_mappings\": {\r\n    \"grade.corrected\": {\r\n      \"type\": \"double\",\r\n      \"script\": {\r\n        \"source\": \"emit(Math.min(100, doc['grade'].value * params.correction))\",\r\n        \"params\": {\r\n          \"correction\": 1.2\r\n        }\r\n      }\r\n    }\r\n  },\r\n  \"aggs\": {\r\n    \"avg_corrected_grade\": {\r\n      \"avg\": {\r\n        \"field\": \"grade.corrected\"\r\n      }\r\n    }\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9200/movies/_search?size=0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"movies",
+								"_search"
+							],
+							"query": [
+								{
+									"key": "size",
+									"value": "0"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "agrégation date",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"aggs\" : {\r\n  \"sales_over_time\" : {\r\n  \"date_histogram\" : {\r\n  \"field\" : \"date\",\r\n  \"calendar_interval\" : \"1M\",\r\n  \"format\" : \"yyyy-MM-dd\"\r\n  }\r\n  }\r\n  }\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9200/movies/_search?size=0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"movies",
+								"_search"
+							],
+							"query": [
+								{
+									"key": "size",
+									"value": "0"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "agrégations date/buckets",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  ...\r\n  \"aggregations\": {\r\n  \"sales_over_time\": {\r\n  \"buckets\": [\r\n  {\r\n  \"key_as_string\": \"2015-01-01\",\r\n  \"key\": 1420070400000,\r\n  \"doc_count\": 3\r\n  },\r\n  {\r\n  \"key_as_string\": \"2015-02-01\",\r\n  \"key\": 1422748800000,\r\n  \"doc_count\": 2\r\n  },\r\n  {\r\n  \"key_as_string\": \"2015-03-01\",\r\n  \"key\": 1425168000000,\r\n  \"doc_count\": 2\r\n  }\r\n  ]\r\n  }\r\n  }\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9200/movies/_search?size=0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"movies",
+								"_search"
+							],
+							"query": [
+								{
+									"key": "size",
+									"value": "0"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Agrégations de type Filters",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"size\": 0,\r\n  \"aggs\" : {\r\n  \"messages\" : {\r\n  \"filters\" : {\r\n  \"errors\" : { \"match\" : { \"body\" : \"error\" }},\r\n  \"warnings\" : { \"match\" : { \"body\" : \"warning\" }}\r\n  }\r\n  }\r\n  }\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9200/movies/_search",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"movies",
+								"_search"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "CAT API",
+			"item": [
+				{
+					"name": "CAT/indices",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:9200/_cat/indices/twi*?v&s=index",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"_cat",
+								"indices",
+								"twi*"
+							],
+							"query": [
+								{
+									"key": "v",
+									"value": null
+								},
+								{
+									"key": "s",
+									"value": "index"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "NODE info API",
+			"item": [
+				{
+					"name": "Nodes process",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9200/_nodes/process",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"_nodes",
+								"process"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Nodes all process",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9200/_nodes/_all/process",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"_nodes",
+								"_all",
+								"process"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Nodes id jvm process",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9200/_nodes/nodeId1,nodeId2/jvm,process",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"_nodes",
+								"nodeId1,nodeId2",
+								"jvm,process"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "nodes id info jvm process",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9200/_nodes/nodeId1,nodeId2/info/jvm,process\n",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"_nodes",
+								"nodeId1,nodeId2",
+								"info",
+								"jvm,process\n"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "nodes id all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9200/_nodes/nodeId1,nodeId2/_all\n",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"_nodes",
+								"nodeId1,nodeId2",
+								"_all\n"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Cluster Stats API",
+			"item": [
+				{
+					"name": "Cluster stat",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9200/_cluster/stats?human&pretty",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"_cluster",
+								"stats"
+							],
+							"query": [
+								{
+									"key": "human",
+									"value": null
+								},
+								{
+									"key": "pretty",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Debug unassigned shard",
+			"item": [
+				{
+					"name": "New Request",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"index\": \"movies-v1\",\r\n  \"shard\": 0,\r\n  \"primary\": false\r\n}\r\n"
+						},
+						"url": {
+							"raw": "http://localhost:9200/_cluster/allocation/explain",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"_cluster",
+								"allocation",
+								"explain"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Création d'un repository",
+			"item": [
+				{
+					"name": "New Request",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"type\": \"fs\",\r\n  \"settings\": {\r\n    \"location\": \"snapshot/my_fs_backup_location\"\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9200/_snapshot/my_fs_backup",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"_snapshot",
+								"my_fs_backup"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Snapshot",
+			"item": [
+				{
+					"name": "Restore du SnapShot",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"indices\": \"index_1,index_2\",\r\n  \"ignore_unavailable\": true,\r\n  \"include_global_state\": false,\r\n  \"rename_pattern\": \"index_(.+)\",\r\n  \"rename_replacement\": \"restored_index_$1\",\r\n  \"include_aliases\": false\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:9200/_snapshot/my_fs_backup/snapshot_1/_restore",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"_snapshot",
+								"my_fs_backup",
+								"snapshot_1",
+								"_restore"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "SQL",
+			"item": [
+				{
+					"name": "SQL select index",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"query\": \"SELECT * FROM movies WHERE release_date < '2000-01-01'\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9200/_sql?format=txt",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"_sql"
+							],
+							"query": [
+								{
+									"key": "format",
+									"value": "txt"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
