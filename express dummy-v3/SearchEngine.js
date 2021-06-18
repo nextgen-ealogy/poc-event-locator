@@ -11,7 +11,7 @@ const search = async (x1,y1,x2,y2) => {
       body: {
           "query": {
             "geo_bounding_box": {
-              "pin.location": {
+              "location": {
                 "top_left": {
                   "lat": x1,
                   "lon":y1
@@ -27,7 +27,32 @@ const search = async (x1,y1,x2,y2) => {
       },
     )
 
-    .catch((e) => console.log('errr', e));
+    // .search({
+    //   index: 'events',
+    //   body: {
+    //          "pin": {
+    //           "location": {
+    //               "lat": x1,
+    //               "lon":y1
+    //           }
+    //         }
+    //     },
+    //   },
+    // )
+
+
+    // .search({
+    //   index: 'events',
+    //   body: {
+    //     "text": "Geo-point as an object",
+    //           "location": {
+    //               "lat": x1,
+    //               "lon":y1
+    //           }
+    //     },
+    //   },
+    // )
+    .catch((e) => console.log('err', e));
   if (
     search &&
     search.body &&
