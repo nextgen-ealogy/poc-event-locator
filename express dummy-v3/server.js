@@ -2,6 +2,9 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 
+var cors = require('cors')
+
+app.use(cors())
 app.use(bodyParser.json());
 app.use(
   bodyParser.urlencoded({
@@ -20,10 +23,10 @@ const client = new Client({
 //       {{#repeat 2}}
 //       {
 //         "id": {{@index}},
-//         "timestampStart": "{{date '1900' '2022' 'YYYY'}} {{date '01' '12' 'MM'}} {{int 01 30}}",
-//         "timestampEnd": "{{date '1900' '2022' 'YYYY'}} {{date '01' '12' 'MM'}} {{int 01 30}}",
+//         "timestampStart": "{{date '1900' '2022' 'DD/MM/YYYY'}}",
+//         "timestampEnd": "{{date '1900' '2022' 'DD/MM/YYYY'}}",
 //         "legend": "{{lorem}}",
-//         "dob": "{{date '1900' '2000' 'YYYY'}}",
+//         "dob": "{{date '1900' '2022' 'DD/MM/YYYY'}}",
 //         "address": "{{int 1 100}} {{street}}",
 //         "city": "{{city}}",
 //         "zipCode": "{{zipcode}}",
@@ -31,14 +34,36 @@ const client = new Client({
 //         "country": "{{country }}",
 //         "image": "img{{@index}}.png",
 //         "location": {
-//             "x": {{float -50 50 '0.00'}},
-//             "y": {{float -25 25 '0.00'}}
+//             "lat": {{float 47 49 '0.00'}},
+//             "lon": {{float 2 2.5 '0.00'}}
 //         }
         
 //       }
 //       {{/repeat}}
 //     ]
 //   }`;
+
+// const template = `{
+//   "events": [
+//     {{#repeat 2}}
+//     {
+//       "address": "{{int 1 100}} {{street}}",
+//       "city": "{{city}}",
+//       "dob": "{{date '1900' '2022' 'DD/MM/YYYY'}}",
+//       "email": "{{email}}"
+//       "id": {{@index}},
+//       "pin.location": {
+//         "lat": {{float 45 60 '0.00'}},
+//         "lon": {{float -10 10 '0.00'}}
+//       }
+//       "name": "{{name}}",
+//       "optedin": {{boolean}},
+//       "work": {{work}}
+//     }
+//     {{/repeat}}
+//   ]
+// }`;
+
 
 const template = `{
   "events": [
@@ -57,12 +82,12 @@ const template = `{
       "image": "img{{@index}}.png",
       "pin.location": {
         "top_left": {
-          "lat": {{float -50 50 '0.00'}},
-          "lon": {{float -50 50 '0.00'}}
+          "lat": {{float 3 3.9 '0.00'}},
+          "lon": {{float 47 48 '0.00'}}
         },
         "bottom_right": {
-          "lat": {{float -50 50 '0.00'}},
-          "lon": {{float -50 50 '0.00'}}
+          "lat": {{float 1 1.9 '0.00'}},
+          "lon": {{float 49 50 '0.00'}}
         }
       }
     }
