@@ -23,6 +23,8 @@ fetch('https://api-adresse.data.gouv.fr/reverse/?lon=2.37&lat=48.357')
 
 // localhost:
 // fetch('http://localhost:3001/search?x1=-21.04&y1=-27.87&x2=-59.71&y2=-13.37')
+// fetch('http://localhost:3001/point/_search')
+
 
 
 .then((response) => {
@@ -41,13 +43,15 @@ class App extends Component {
   /////////////////////////////////////////////////
   componentDidMount(){
     // todo :
-    fetch('https://jsonplaceholder.typicode.com/todos/2')
+    // fetch('https://jsonplaceholder.typicode.com/todos/2')
   
     // coordonnée :
     fetch('https://api-adresse.data.gouv.fr/reverse/?lon=2.37&lat=48.357')
     // localhost:
     // fetch('http://localhost:3001/search?x1=-21.04&y1=-27.87&x2=-59.71&y2=-13.37')
-  
+    // fetch('http://localhost:3001/search?x1=-48.81&y1=2.34')
+    // fetch('http://localhost:3001/point/_search')
+
   
     .then((response) => {
       return response.json()
@@ -62,7 +66,7 @@ class App extends Component {
     render() {
       if (!this.state.post.features){ return null}
       // if (!this.state.post.locate){ return null}
-      const position = [50.633, 3.0667]
+      const position = [48.83, 2.36]
     return (
       <div className="App">
       <h1>test fetch</h1>
@@ -78,7 +82,7 @@ class App extends Component {
       {/* {this.state.post.locate} */}
   
    
-    <Map center={[50.633, 3.0667]} zoom={12}
+    <Map center={[48.83, 2.36]} zoom={10}
     scrollWheelZoom={false}>
     
       <TileLayer
