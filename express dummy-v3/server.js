@@ -18,30 +18,32 @@ const { stringify } = require('querystring');
 const client = new Client({
   node: 'http://localhost:9200/'
 })
-// const template = `{
-//     "events": [
-//       {{#repeat 2}}
-//       {
-//         "id": {{@index}},
-//         "timestampStart": "{{date '1900' '2022' 'DD/MM/YYYY'}}",
-//         "timestampEnd": "{{date '1900' '2022' 'DD/MM/YYYY'}}",
-//         "legend": "{{lorem}}",
-//         "dob": "{{date '1900' '2022' 'DD/MM/YYYY'}}",
-//         "address": "{{int 1 100}} {{street}}",
-//         "city": "{{city}}",
-//         "zipCode": "{{zipcode}}",
-//         "optedin": {{boolean}},
-//         "country": "{{country }}",
-//         "image": "img{{@index}}.png",
-//         "location": {
-//             "lat": {{float 47 49 '0.00'}},
-//             "lon": {{float 2 2.5 '0.00'}}
-//         }
+const template = `{
+    "events": [
+      {{#repeat 2}}
+      {
+        "id": {{@index}},
+        "timestampStart": "{{date '1900' '2022' 'DD/MM/YYYY'}}",
+        "timestampEnd": "{{date '1900' '2022' 'DD/MM/YYYY'}}",
+        "legend": "{{lorem}}",
+        "dob": "{{date '1900' '2022' 'DD/MM/YYYY'}}",
+        "address": "{{int 1 100}} {{street}}",
+        "city": "{{city}}",
+        "zipCode": "{{zipcode}}",
+        "optedin": {{boolean}},
+        "country": "{{country }}",
+        "image": "img{{@index}}.png",
+        "location": {
+            "lat": {{float 47 49 '0.00'}},
+            "lon": {{float 2 2.5 '0.00'}}
+        }
         
-//       }
-//       {{/repeat}}
-//     ]
-//   }`;
+      }
+      {{/repeat}}
+    ]
+  }`;
+
+  
 
 // const template = `{
 //   "events": [
@@ -65,35 +67,46 @@ const client = new Client({
 // }`;
 
 
-const template = `{
-  "events": [
-    {{#repeat 2}}
-    {
-      "id": {{@index}},
-      "timestampStart": "{{date '1900' '2022' 'DD/MM/YYYY'}}",
-      "timestampEnd": "{{date '1900' '2022' 'DD/MM/YYYY'}}",
-      "legend": "{{lorem}}",
-      "dob": "{{date '1900' '2000' 'YYYY'}}",
-      "address": "{{int 1 100}} {{street}}",
-      "city": "{{city}}",
-      "zipCode": "{{zipcode}}",
-      "optedin": {{boolean}},
-      "country": "{{country }}",
-      "image": "img{{@index}}.png",
-      "pin.location": {
-        "top_left": {
-          "lat": {{float 3 3.9 '0.00'}},
-          "lon": {{float 47 48 '0.00'}}
-        },
-        "bottom_right": {
-          "lat": {{float 1 1.9 '0.00'}},
-          "lon": {{float 49 50 '0.00'}}
-        }
-      }
-    }
-    {{/repeat}}
-  ]
-}`;
+// const template = `{
+//   "events": [
+//     {{#repeat 2}}
+//     {
+//       "id": {{@index}},
+//       "timestampStart": "{{date '1900' '2022' 'DD/MM/YYYY'}}",
+//       "timestampEnd": "{{date '1900' '2022' 'DD/MM/YYYY'}}",
+//       "legend": "{{lorem}}",
+//       "dob": "{{date '1900' '2000' 'YYYY'}}",
+//       "address": "{{int 1 100}} {{street}}",
+//       "city": "{{city}}",
+//       "zipCode": "{{zipcode}}",
+//       "optedin": {{boolean}},
+//       "country": "{{country }}",
+//       "image": "img{{@index}}.png",
+//       "pin.location": {
+//         "top_left": {
+//           "lat": {{float 49.20 48.78 '0.00'}},
+//           "lon": {{float 1.50 1.80 '0.00'}}
+//         },
+//         "bottom_right": {
+//           "lat": {{float 48.13 1.9 '0.00'}},
+//           "lon": {{float 48.37 2.77 '0.00'}}
+//         }
+//       }
+//     }
+//     {{/repeat}}
+//   ]
+// }`;
+
+// const template = `{
+//   "events": [
+//     {{#repeat 2}}
+//     {
+  
+//       "location": [ -71.34, 41.12 ] 
+//     }
+//     {{/repeat}}
+//   ]
+// }`;
 
 const result = JSON.parse(dummyjson.parse(template)); // Returns a string
 
