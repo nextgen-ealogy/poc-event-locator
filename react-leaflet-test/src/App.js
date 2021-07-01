@@ -3,6 +3,7 @@ import { Map, Marker, Popup, TileLayer } from "react-leaflet";
 import { render } from '@testing-library/react';
 import { Component } from 'react';
 import "./App.css";
+import "../data"
 
 /////////////////////////////////////////////////
 // exemple 1 
@@ -19,11 +20,13 @@ fetch('https://jsonplaceholder.typicode.com/todos/')
 /////////////////////////////////////////////////
 // exemple 2
 // coordonnée GPS (non fonctionnel)
-fetch('https://api-adresse.data.gouv.fr/reverse/?lon=2.37&lat=48.357')
+// fetch('https://api-adresse.data.gouv.fr/reverse/?lon=2.37&lat=48.357')
 
 // localhost:
 // fetch('http://localhost:3001/search?x1=-21.04&y1=-27.87&x2=-59.71&y2=-13.37')
 // fetch('http://localhost:3001/point/_search')
+fetch('http://localhost:3001/search?x1=49.28&y1=1.07&x2=47.78&y2=3.57')
+
 
 
 
@@ -46,11 +49,12 @@ class App extends Component {
     // fetch('https://jsonplaceholder.typicode.com/todos/2')
   
     // coordonnée :
-    fetch('https://api-adresse.data.gouv.fr/reverse/?lon=2.37&lat=48.357')
+    // fetch('https://api-adresse.data.gouv.fr/reverse/?lon=2.37&lat=48.357')
     // localhost:
     // fetch('http://localhost:3001/search?x1=-21.04&y1=-27.87&x2=-59.71&y2=-13.37')
     // fetch('http://localhost:3001/search?x1=-48.81&y1=2.34')
     // fetch('http://localhost:3001/point/_search')
+    fetch('http://localhost:3001/search?x1=49.28&y1=1.07&x2=47.78&y2=3.57')
 
   
     .then((response) => {
@@ -64,9 +68,14 @@ class App extends Component {
   
   /////////////////////////////////////////////////
     render() {
-      if (!this.state.post.features){ return null}
+      // if (!this.state.post.features){ return null}
       // if (!this.state.post.locate){ return null}
+      if (!this.state.post.hits){ return null}
+
       const position = [48.83, 2.36]
+      ////////////////////////////////////////////
+      const api_url = 'http://localhost:3001/search?x1=49.28&y1=1.07&x2=47.78&y2=3.57'
+      
     return (
       <div className="App">
       <h1>test fetch</h1>
@@ -76,10 +85,15 @@ class App extends Component {
   
   
       <p>coordonnée GPS :</p>
-      {this.state.post.features[0].geometry.coordinates}
+      {/* {this.state.post.features[0].geometry.coordinates} */}
   
-      {/* <p>titre local host :</p> */}
+      <p>titre local host :</p>
       {/* {this.state.post.locate} */}
+      {this.state.post.hits[0]._source.city}
+      
+      {/* {this.state.post.hits[0]._source.location} */}
+
+
   
    
     <Map center={[48.83, 2.36]} zoom={10}
