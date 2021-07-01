@@ -59,6 +59,7 @@ const search = async (x1, y1, x2, y2) => {
     .search({
       index: "events",
       body: {
+        size : 100,
         query: {
           geo_bounding_box: {
             location: {
