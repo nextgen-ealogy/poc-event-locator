@@ -1,0 +1,237 @@
+[
+{
+"hitsCount": 10,
+"hits": [
+{
+"_index": "events",
+"_type": "_doc",
+"_id": "KnBVPXoBdaj2tVEaLB-s",
+"_score": 1,
+"_source": {
+"id": 0,
+"timestampStart": "28/02/1916",
+"timestampEnd": "31/05/1990",
+"legend": "Sodales maximus eros eget it ultrices. Nunc lorem lacus proin it, lacus orci lacinia commodo, sodales cursus hendrerit tristique dui etiam nisl eti ex turpis.",
+"dob": "04/05/1956",
+"address": "54 Hudson Street",
+"city": "Adelaide",
+"zipCode": "88935",
+"optedin": true,
+"country": "Réunion",
+"image": "img0.png",
+"location": {
+"lat": 48.48,
+"lon": 2.42
+}
+}
+},
+{
+"_index": "events",
+"_type": "_doc",
+"_id": "K3BVPXoBdaj2tVEaLB-s",
+"_score": 1,
+"_source": {
+"id": 1,
+"timestampStart": "27/07/2002",
+"timestampEnd": "12/09/1979",
+"legend": "Rhoncus id turpis sed dignissim nulla tempor at, enim tempus quis nam facilisis. Cit proin dia lum, mi velit ornare lorem ultricies tem id ali.",
+"dob": "15/04/1995",
+"address": "41 Appleton Street",
+"city": "Newcastle",
+"zipCode": "24159",
+"optedin": true,
+"country": "Viet Nam",
+"image": "img1.png",
+"location": {
+"lat": 47.91,
+"lon": 2.45
+}
+}
+},
+{
+"_index": "events",
+"_type": "_doc",
+"_id": "LHBWPXoBdaj2tVEaHx8Z",
+"_score": 1,
+"_source": {
+"id": 0,
+"timestampStart": "22/09/1909",
+"timestampEnd": "03/04/1920",
+"legend": "Iaculis i donec ut ali quis tem non. Pulvinar elementum suscipit hendrerit orci consequat euismod risus, augue scelerisque vel vestibulum commodo. Non u tempor bibendum.",
+"dob": "03/02/1920",
+"address": "5 Tavistock Place",
+"city": "Pheonix",
+"zipCode": "77869",
+"optedin": false,
+"country": "Netherlands",
+"image": "img0.png",
+"location": {
+"lat": 48.34,
+"lon": 2.32
+}
+}
+},
+{
+"_index": "events",
+"_type": "_doc",
+"_id": "LXBWPXoBdaj2tVEaHx8Z",
+"_score": 1,
+"_source": {
+"id": 1,
+"timestampStart": "13/09/1960",
+"timestampEnd": "21/08/1934",
+"legend": "Mattis mauris dia natoque aliquet nunc i eros. Accumsan porttitor neque cras aliquet, vestibulum aliquet maecenas maximus metus morbi. Mattis u tempor vel aenean laoreet.",
+"dob": "11/03/1937",
+"address": "93 Foster Walk",
+"city": "Auckland",
+"zipCode": "02612",
+"optedin": true,
+"country": "Cook Islands",
+"image": "img1.png",
+"location": {
+"lat": 48.5,
+"lon": 2.05
+}
+}
+},
+{
+"_index": "events",
+"_type": "_doc",
+"_id": "JXA8PXoBdaj2tVEamx90",
+"_score": 1,
+"_source": {
+"id": 1,
+"timestampStart": "13/05/1991",
+"timestampEnd": "17/04/1919",
+"legend": "U enim lorem blandit tristique condimentum dui. Sollicitudin aenean curabitur iaculis. Dia e vulputate amet, etiam rhoncus scelerisque sagittis vestibulum risus. Sodales curabitur mollis sapien.",
+"dob": "25/06/1975",
+"address": "59 Walford Way",
+"city": "Seattle",
+"zipCode": "99367",
+"optedin": false,
+"country": "Sweden",
+"image": "img1.png",
+"location": {
+"lat": 48.96,
+"lon": 2.39
+}
+}
+},
+{
+"_index": "events",
+"_type": "_doc",
+"_id": "JnA9PXoBdaj2tVEamR8w",
+"_score": 1,
+"_source": {
+"id": 0,
+"timestampStart": "22/06/1923",
+"timestampEnd": "16/11/1913",
+"legend": "Facilisis justo non felis eros sollicitudin dolor. Accumsan suscipit non vestibulum orci con dia tempus, leo ex gravida o, it blandit purus mauris au sollicitudin.",
+"dob": "28/10/1952",
+"address": "97 Rutland Drive",
+"city": "Baltimore",
+"zipCode": "41395",
+"optedin": false,
+"country": "Portugal",
+"image": "img0.png",
+"location": {
+"lat": 48.95,
+"lon": 2.01
+}
+}
+},
+{
+"_index": "events",
+"_type": "_doc",
+"_id": "J3A9PXoBdaj2tVEamR8w",
+"_score": 1,
+"_source": {
+"id": 1,
+"timestampStart": "02/12/1922",
+"timestampEnd": "17/07/1913",
+"legend": "Nulla nisl risus cit vel aliquam ornare, lacinia nam dictum dui pellentesque. I mauris eu ultrices lacinia. Orci arcu augue eu en. Tortor turpis morbi.",
+"dob": "07/06/1915",
+"address": "51 Baker Street",
+"city": "Fargo",
+"zipCode": "20785",
+"optedin": true,
+"country": "Switzerland",
+"image": "img1.png",
+"location": {
+"lat": 48.06,
+"lon": 2.31
+}
+}
+},
+{
+"_index": "events",
+"_type": "_doc",
+"_id": "LnBoPXoBdaj2tVEa9B8s",
+"_score": 1,
+"_source": {
+"id": 0,
+"timestampStart": "24/08/1918",
+"timestampEnd": "14/01/1989",
+"legend": "Ex dia e viverra ultricies, est dui sollicitudin orci vitae est, mauris nunc mollis in tortor mauris vel amet mauris. Sem u it aliquet blandit.",
+"dob": "25/01/1954",
+"address": "70 Warner Street",
+"city": "Walkerville",
+"zipCode": "53260",
+"optedin": true,
+"country": "Lithuania",
+"image": "img0.png",
+"location": {
+"lat": 48.68,
+"lon": 2.41
+}
+}
+},
+{
+"_index": "events",
+"_type": "_doc",
+"_id": "MXBpPXoBdaj2tVEaIh-s",
+"_score": 1,
+"_source": {
+"id": 1,
+"timestampStart": "01/01/1902",
+"timestampEnd": "10/06/1989",
+"legend": "Sodales u lobortis maecenas bibendum, aenean u est id tempus tortor nulla. Faucibus sem viverra pharetra amet proin, sagittis etiam iaculis au. Cit ultricies lum.",
+"dob": "13/07/1959",
+"address": "42 Longford Crescent",
+"city": "Bangor",
+"zipCode": "49902",
+"optedin": false,
+"country": "Mongolia",
+"image": "img1.png",
+"location": {
+"lat": 48.89,
+"lon": 2.46
+}
+}
+},
+{
+"_index": "events",
+"_type": "_doc",
+"_id": "UT0nPnoB2S0-rVcLpTJq",
+"_score": 1,
+"_source": {
+"id": 0,
+"timestampStart": "27/04/1926",
+"timestampEnd": "17/10/1987",
+"legend": "Aliquet leo etiam con sem dictum. Proin neque turpis viverra consequat u purus non lacinia it. Quisque vulputate sem gravida mi mollis u erat vestibulum.",
+"dob": "29/05/1985",
+"address": "32 Walford Way",
+"city": "Birmingham",
+"zipCode": "56018",
+"optedin": true,
+"country": "Korea, Democratic People&#x27;s Republic of",
+"image": "img0.png",
+"location": {
+"lat": 48.86,
+"lon": 2.07
+}
+}
+}
+]
+}
+]
