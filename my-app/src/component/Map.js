@@ -1,14 +1,36 @@
 import React from "react";
-import { Map,MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
+import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import { Component } from 'react';
+import { bounds, LatLngBounds } from "leaflet";
 
 
 class Maps extends Component {
+  
   // Méthode Post :
   state = {
-    post: {},map:{getBounds:function(){} }
-  }
+    post: {},map:{getBounds:function DisplayPosition({ map ,useState, useCallback, useEffect}){ 
+      const [position, setPosition] = useState(map.getCenter())
+    
+      const onClick = useCallback(() => {
+        map.setView([48.83, 2.36], 13)
+      }, [map])
+    
+      const onMove = useCallback(() => {
+        setPosition(map.getCenter())
+      }, [map])
+    
+      useEffect(() => {
+        map.on('move', onMove)
+        return () => {
+          map.off('move', onMove)
+        }
+      }, [map, onMove])
 
+      console.log('map center:', MapContainer.getCenter())
+   } }
+    
+  }
+  
   // Call API :
   /////////////////////////////////////////////////
   componentDidMount(){
@@ -31,42 +53,32 @@ class Maps extends Component {
   /////////////////////////////////////////////////
   render() {
     
+    
     if (!this.state.post.hits){ return null}
 
     const positions = this.state.post.hits.map((hit) => { 
        return [hit._source.location.lat, hit._source.location.lon, hit._source.legend]
     })
 
-    // const L=0;
-    // var map = L.map('map', {
-    //   center: [51 , 2],
-    //   zoom:13
-    // })
-    // const southWest = L.latLng(40.712, -74.227),
-    // northEast = L.latLng(40.774, -74.125),
-    // bounds = L.latLngBounds(southWest, northEast);
-
-    // var latlng = L.latLng(50.5, 30.5);
      //Affichage de la page : 
 
-
      console.log(this.state.map);
+     console.log(this.state.map._lastCenter);
     return (
       <div className="Maps">
     
-    
+    {/* <p>
+      latitude: {position.lat.toFixed(4)}, longitude: {position.lng.toFixed(4)}{' '}
+      <button onClick={onClick}>reset</button>
+    </p> */}
     
     
       <MapContainer 
-      // center={this.getCalculatedCenterFromState()}
-      //           zoom={this.getCalculatedZoomFromState()}
-      //           minZoom={this.getCalculatedMinZoomFromState()}
-      //           maxZoom={2}
-      //           onZoomEnd={this.mapService.handleZoomstart(/* map.object */)}
-      whenCreated={map=>this.setState({map})} 
+
+      whenCreated={map=>this.setState({map,getBounds(){}})} 
       center={[48.83, 2.36]} zoom={10}
       scrollWheelZoom={false}>
-    
+
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -84,8 +96,14 @@ class Maps extends Component {
           </Marker>
         } ))
       }
+      
+      {/* {map ? <DisplayPosition map={map} /> : null} */}
+  
+
       </MapContainer>
-      {/* latitude {Map.getCenter()}    , longitude {this.state.post.hits[0]._source.location.lon} */}
+      
+      latitude {this.state.post.getBounds}    , longitude {this.state.post.hits[0]._source.location.lon}
+      
       </div>
     );
   }
