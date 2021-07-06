@@ -30,6 +30,7 @@ class App extends Component {
 
     render() {
      //Affichage de la page : 
+     
     return (
       <div className="App">
       <h1>Map leaflet</h1>
