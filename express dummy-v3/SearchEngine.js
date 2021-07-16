@@ -76,6 +76,27 @@ const search = async (x1, y1, x2, y2) => {
         },
       },
     })
+
+    // .search({
+    //   index: "events",
+    //   body: {
+    //     size : 100,
+    //     query: {
+    //       geo_bounding_box: {
+    //         location: {
+    //           top_right: {
+    //             lat: parseFloat(x1),
+    //             lon: parseFloat(y1),
+    //           },
+    //           bottom_left: {
+    //             lat: parseFloat(x2),
+    //             lon: parseFloat(y2),
+    //           },
+    //         },
+    //       },
+    //     },
+    //   },
+    // })
     .catch((e) => console.log("err", e));
   console.log(JSON.stringify(searchResult));
 
