@@ -19,6 +19,9 @@ const Maps = () => {
     console.log("bound", bounds)
     console.log("bounds southWest", bounds._southWest)
     console.log("bounds northEast", bounds._northEast)
+    console.log("bounds zoom", bounds.zoom)
+    console.log("bounds northWest", bounds._northWest, "bounds southEast", bounds._southEast)
+
     // console.log("northEast Lat", bounds._northEast.lat , "northEast Lng", bounds._northEast.lng)
     // console.log("southWest lat", bounds._southWest.lat, "southWest lng", bounds._southWest.lng )
 
@@ -32,9 +35,16 @@ const Maps = () => {
       // fetch("http://localhost:3001/search?x1=49+bound._northEast.lat&y1=2.8+bound._northEast.lng&x2=48+bound._southWest.lat&y2=2+bound._southEast.lng")
       // fetch("http://localhost:3001/search?x1=bound._northEast.lat&y1=bound._northEast.lng&x2=bound._southWest.lat&y2=bound._southEast.lng")
 
-      // le problème est que x1 et y1 doivent être = top_left mais le bounds._southEast ne peut pas être utilisé.
+      // le problème est que x1 et y1 doivent être = top_left mais le bounds._northWest ne peut pas être utilisé.
 
-    fetch("http://localhost:3001/search?x1=bounds._northEast.lat&y1=bounds._northEast.lng&x2=bounds._southWest.lat&y2=bounds._southWest.lng")
+    // fetch("http://localhost:3001/search?x1=bounds._northEast.lat&y1=bounds._northEast.lng&x2=bounds._southWest.lat&y2=bounds._southWest.lng")
+    // fetch("http://localhost:3001/search?x1=bounds._northWest.lat&y1=bounds._northWest.lng&x2=bounds._southEast.lat&y2=bounds._southEast.lng")
+    // fetch("http://localhost:3001/search?x1="+bounds._northEast.lat+"&y1="+bounds._northEast.lng+"&x2="+bounds._southWest.lat+"&y2="+bounds._southWest.lng+"")
+    // fetch("http://localhost:3001/search?x1="+bounds._northWest.lat+"&y1="+bounds._northWest.lng+"&x2="+bounds._southEast.lat+"&y2="+bounds._southEast.lng+"")
+    // fetch("http://localhost:3001/search?x1="+bounds._northEast.lat+"&y1="+bounds._southWest.lng+"&x2="+bounds._southWest.lat+"&y2="+bounds._northEast.lng+"")
+    
+    fetch("http://localhost:3001/search?x1="+bounds._northEast.lat+"&y1="+bounds._northEast.lng+"&x2="+bounds._southWest.lat+"&y2="+bounds._southWest.lng+"")
+    fetch("http://localhost:3001/search?x1="+bounds._northEast.lat+"&y1="+bounds._southWest.lng+"&y2="+bounds._northEast.lng+"&x2="+bounds._southWest.lat+"")
 
       .then((response) => {
         return response.json();
