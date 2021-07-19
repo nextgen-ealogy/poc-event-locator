@@ -2,6 +2,8 @@ import React from "react";
 import { Component } from 'react';
 import "./App.css";
 import Maps from "./component/Map";
+import Form from "./component/Form";
+
 // import Position from "./component/Position";
 // import Preview from "./component/Preview"
 // import "../src/data/data.json"
@@ -33,7 +35,8 @@ class App extends Component {
      
     return (
       <div className="App">
-      <h1>Map leaflet</h1>
+        <h1>Map leaflet</h1>
+        <Form />
         <Maps />
       </div>
     );
