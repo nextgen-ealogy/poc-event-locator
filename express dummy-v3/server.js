@@ -50,8 +50,8 @@ const template = `{
     {{#repeat 2}}
     {
       "id": {{@index}},
-      "timestampStart": "{{date '1900' '2022' 'DD/MM/YYYY'}}",
-      "timestampEnd": "{{date '1900' '2022' 'DD/MM/YYYY'}}",
+      "startDate": "{{date '1900' '1950' 'DD/MM/YYYY'}}",
+      "endDate": "{{date '1951' '2022' 'DD/MM/YYYY'}}",
       "legend": "{{lorem}}",
       "dob": "{{date '1900' '2000' 'YYYY'}}",
       "address": "{{int 1 100}} {{street}}",
