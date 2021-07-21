@@ -1,7 +1,7 @@
 const { Client } = require("@elastic/elasticsearch");
 const client = new Client({ node: "http://localhost:9200" });
 
-const search = async (x1, y1, x2, y2) => {
+const search = async (x1, y1, x2, y2, d1, d2) => {
   const hits = [];
 
   // only string values are searchable
@@ -74,6 +74,14 @@ const search = async (x1, y1, x2, y2) => {
             },
           },
         },
+        "query": {
+          "range": {
+            "timestamp": {
+              "gte": Boolean(d1),
+              "lt": Boolean(d2)
+            }
+          }
+        }
       },
     })
 
