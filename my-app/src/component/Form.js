@@ -7,18 +7,22 @@ const Maps = () => {
   const [post, setPost] = useState({ hits: [] });
   const [bounds, setBounds] = useState({});
   const [map, setMap] = useState({});
-  const [startDate] = useState({});
-  const [endDate] = useState ({});
-  const [state, setState] = useState ({
-    startDate: "",
-    endDate: ""
-  })
+ const [startDate, setStartDate] = useState ({});
+const [endDate, setEndDate] = useState ({});
 
   function handleChange(evt) {
     const value = evt.target.value;
-    setState({
-      ...state,
-      [evt.target.name]: value
+    setStartDate({
+      ...startDate,
+      [evt.target.startDate]: value
+    });
+  }
+
+  function handleChanges(evt) {
+    const value = evt.target.value;
+    setEndDate({
+      ...endDate,
+      [evt.target.endDate]: value
     });
   }
 
@@ -39,6 +43,8 @@ const Maps = () => {
       const southEastX =  bounds._southWest.lat
       const southEastY =  bounds._northEast.lng
 
+      
+
       // if (hit._source.startDate && hit._source.endDate){
       // const startDate = hit._source.startDate
       // const endDate = hit._source.endDate
@@ -58,10 +64,6 @@ const Maps = () => {
 
   }, [bounds]);
 
-  if (!startDate && !endDate) {
-      return null
-  }
-
   if (!post.hits) {
     return null;
   }
@@ -69,7 +71,7 @@ const Maps = () => {
 
 
   const positions = post.hits.map((hit) => {
-    return [hit._source.location.lat, hit._source.location.lon, hit._source.startDate];
+    return [hit._source.location.lat, hit._source.location.lon, hit._source.legend];
   });
 
   
@@ -83,15 +85,15 @@ const Maps = () => {
                 <input 
                     type="date" 
                     name="startDate" 
-                    value={state.startDate} 
+                    value={startDate.setStartDate} 
                     onChange={handleChange} />
 
                 <label>endDate</label>
                 <input 
                     type="date" 
                     name="endDate" 
-                    value={state.endDate} 
-                    onChange={handleChange}/>
+                    value={endDate.setEndDate} 
+                    onChange={handleChanges}/>
 
                 <input 
                     type="button" 
@@ -115,8 +117,8 @@ const Maps = () => {
       {positions.map((position) => {
         return (
           <Marker position={position}>
-            {position.map((startDate) => {
-              return <Popup position={startDate}>{startDate}</Popup>;
+            {position.map((legend) => {
+              return <Popup position={legend}>{legend}</Popup>;
             })}
           </Marker>
         );
@@ -129,75 +131,3 @@ const Maps = () => {
 };
 
 export default Maps;
-
-
-// constructor(props) {
-//     super(props);
-    
-//     this.initialState = {
-//         hit: []
-//     };
-
-//     this.state = this.initialState;
-//     console.log(this)
-// }
-
-
-// handleChange = events => {
-//     const { startDate, endDate, value } = events.target;
-//     this.setState({
-//         [startDate] : value  ,
-//         [endDate] : value
-//     });
-    
-// }
-
-// handleChange = events => {
-//     index.search('query', {
-//         filters: 'startDate'
-//     })
-// }
-
-
-//   handleChange = events => {
-//     const { startDate, value } = events.target;
-//     this.setState({
-//         [startDate] : value 
-//     });
-    
-// }
-
-// submitForm = () => {
-//     this.props.handleSubmit(this.state);
-//     this.setState(this.initialState);
-// }
-
-// render() {
-//     const { startDate, endDate } = this.state; 
-
-//     return (
-        // <div className="Form">
-        //     <form>
-        //         <label>startDate</label>
-
-        //         <input 
-        //             type="date" 
-        //             name="startDate" 
-        //             value={startDate} 
-        //             onChange={this.handleChange} />
-
-        //         <label>endDate</label>
-        //         <input 
-        //             type="date" 
-        //             name="endDate" 
-        //             value={endDate} 
-        //             onChange={this.handleChange}/>
-
-        //         <input 
-        //             type="button" 
-        //             value="Submit" 
-        //             onClick={this.submitForm} />
-        //     </form>
-        // </div>
-//     );
-// }
