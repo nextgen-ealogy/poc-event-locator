@@ -37,7 +37,7 @@ class App extends Component {
       <div className="App">
         <h1>Map leaflet</h1>
         <Form />
-        <Maps />
+        {/* <Maps /> */}
       </div>
     );
   }
