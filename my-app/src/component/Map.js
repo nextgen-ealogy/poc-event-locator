@@ -40,8 +40,9 @@ const Maps = () => {
   }
 
   const positions = post.hits.map((hit) => {
-    return [hit._source.location.lat, hit._source.location.lon, hit._source.legend];
+    return [hit._source.location.lat, hit._source.location.lon, hit._source.startDate];
   });
+  
   return (
     <div className="Map">
     {/* latitude: {bounds._southWest} */}
@@ -62,8 +63,8 @@ const Maps = () => {
       {positions.map((position) => {
         return (
           <Marker position={position}>
-            {position.map((legend) => {
-              return <Popup position={legend}>{legend}</Popup>;
+            {position.map((startDate) => {
+              return <Popup position={startDate}>{startDate}</Popup>;
             })}
           </Marker>
         );
