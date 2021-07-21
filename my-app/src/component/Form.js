@@ -9,7 +9,20 @@ const Maps = () => {
   const [map, setMap] = useState({});
   const [startDate] = useState({});
   const [endDate] = useState ({});
+  const [state, setState] = useState ({
+    startDate: "",
+    endDate: ""
+  })
 
+  function handleChange(evt) {
+    const value = evt.target.value;
+    setState({
+      ...state,
+      [evt.target.name]: value
+    });
+  }
+
+  
   useEffect(() => {
     if(map.on){
       map.on("moveend", () => {
@@ -26,11 +39,11 @@ const Maps = () => {
       const southEastX =  bounds._southWest.lat
       const southEastY =  bounds._northEast.lng
 
-      if (hit._source.startDate && hit._source.endDate){
-      const startDate = hit._source.startDate
-      const endDate = hit._source.endDate
-      fetch("http://localhost:3001/search?x1="+northWestX+"&y1="+northWestY+"&x2="+southEastX+"&y2="+southEastY+"&d1="+true+"&d2="+true)
-      }
+      // if (hit._source.startDate && hit._source.endDate){
+      // const startDate = hit._source.startDate
+      // const endDate = hit._source.endDate
+      // fetch("http://localhost:3001/search?x1="+northWestX+"&y1="+northWestY+"&x2="+southEastX+"&y2="+southEastY+"&d1="+true+"&d2="+true)
+      // }
      
 
       fetch("http://localhost:3001/search?x1="+northWestX+"&y1="+northWestY+"&x2="+southEastX+"&y2="+southEastY)
@@ -70,15 +83,15 @@ const Maps = () => {
                 <input 
                     type="date" 
                     name="startDate" 
-                    value={startDate} 
-                    onChange={hit._source.startDate} />
+                    value={state.startDate} 
+                    onChange={handleChange} />
 
                 <label>endDate</label>
                 <input 
                     type="date" 
                     name="endDate" 
-                    value={endDate} 
-                    onChange={this.hit._source.endDate}/>
+                    value={state.endDate} 
+                    onChange={handleChange}/>
 
                 <input 
                     type="button" 
