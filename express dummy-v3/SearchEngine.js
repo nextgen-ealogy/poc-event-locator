@@ -27,65 +27,51 @@ const search = async (x1, y1, x2, y2, d1, d2) => {
     //   },
     // )
 
-    // .search({
-    //   index: 'events',
-    //   body: {
-    //     "query": {
-    //       "bool": {
-    //         "must": {
-    //           "match_all": {}
-    //         },
-    //         "filter": {
-    //           "geo_bounding_box": {
-    //             "location": {
-    //               "top_left": {
-    //                 "lat": x1,
-    //                 "lon": y1
-    //               },
-    //               "bottom_right": {
-    //                 "lat": x2,
-    //                 "lon": y2
-    //               }
-    //             }
-    //           }
-    //         }
-    //       }
-    //     }
-    //     },
-    //   },
-    // )
-
-
+// query geo_bounding_box & query
     .search({
-      index: "events",
+      index: 'events',
       body: {
-        size : 100,
-        query: {
-          geo_bounding_box: {
-            location: {
-              top_left: {
-                lat: parseFloat(x1),
-                lon: parseFloat(y1),
-              },
-              bottom_right: {
-                lat: parseFloat(x2),
-                lon: parseFloat(y2),
-              },
+        "query": {
+          "bool": {
+            "must": {
+              "match_all": {}
             },
-          },
+            "filter": {
+              "geo_bounding_box": {
+                "location": {
+                  "top_left": {
+                    "lat": x1,
+                    "lon": y1
+                  },
+                  "bottom_right": {
+                    "lat": x2,
+                    "lon": y2
+                  }
+                }
+              }
+            }
+          }
         },
         "query": {
-          "range": {
-            "timestamp": {
-              "gte": Boolean(d1),
-              "lt": Boolean(d2)
+          "bool": {
+            "must": {
+              "match_all": {}
+            },
+            "filter": {
+              "range": {
+                "timestamp": {
+                  "gte": d1,
+                  "lt": d2
+                }
+              }
             }
           }
         }
+        },
       },
-    })
+    )
 
-    
+// query geo_bounding_box & query range timestamp
     // .search({
     //   index: "events",
     //   body: {
@@ -93,19 +79,31 @@ const search = async (x1, y1, x2, y2, d1, d2) => {
     //     query: {
     //       geo_bounding_box: {
     //         location: {
-    //           top_right: {
+    //           top_left: {
     //             lat: parseFloat(x1),
     //             lon: parseFloat(y1),
     //           },
-    //           bottom_left: {
+    //           bottom_right: {
     //             lat: parseFloat(x2),
     //             lon: parseFloat(y2),
     //           },
     //         },
     //       },
     //     },
+    //     "query": {
+    //       "range": {
+    //         "timestamp": {
+    //           "gte": Boolean(d1),
+    //           "lt": Boolean(d2)
+    //         }
+    //       }
+    //     }
     //   },
     // })
+
+  
+
+
     .catch((e) => console.log("err", e));
   console.log(JSON.stringify(searchResult));
 
