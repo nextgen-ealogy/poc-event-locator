@@ -45,11 +45,17 @@ const [endDate, setEndDate] = useState ({});
 
       
 
-      // if (hit._source.startDate && hit._source.endDate){
-      // const startDate = hit._source.startDate
-      // const endDate = hit._source.endDate
-      // fetch("http://localhost:3001/search?x1="+northWestX+"&y1="+northWestY+"&x2="+southEastX+"&y2="+southEastY+"&d1="+true+"&d2="+true)
-      // }
+      if ( startDate.setStartDate && endDate.setEndDate){
+        const startDate = startDate.setStartDate;
+        const endDate = endDate.setEndDate;
+      fetch("http://localhost:3001/search?x1="+northWestX+"&y1="+northWestY+"&x2="+southEastX+"&y2="+southEastY+"&d1="+startDate+"&d2="+endDate)
+      .then((response) => {
+        return response.json();
+      })
+      .then((result) => {
+        setPost(result)
+      });
+      }
      
 
       fetch("http://localhost:3001/search?x1="+northWestX+"&y1="+northWestY+"&x2="+southEastX+"&y2="+southEastY)
