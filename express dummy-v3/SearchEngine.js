@@ -61,7 +61,7 @@ const search = async (x1, y1, x2, y2, d1, d2) => {
               "range": {
                 "timestamp": {
                   "gte": d1,
-                  "lt": d2
+                  "lte": d2
                 }
               }
             }
