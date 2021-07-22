@@ -44,7 +44,6 @@ const [endDate, setEndDate] = useState ({});
       const southEastY =  bounds._northEast.lng
 
       
-
       if ( startDate.setStartDate && endDate.setEndDate){
         const startDate = startDate.setStartDate;
         const endDate = endDate.setEndDate;
@@ -57,7 +56,6 @@ const [endDate, setEndDate] = useState ({});
       });
       }
      
-
       fetch("http://localhost:3001/search?x1="+northWestX+"&y1="+northWestY+"&x2="+southEastX+"&y2="+southEastY)
         .then((response) => {
           return response.json();
@@ -66,7 +64,6 @@ const [endDate, setEndDate] = useState ({});
           setPost(result)
         });
     }
- 
 
   }, [bounds]);
 
@@ -81,7 +78,10 @@ const [endDate, setEndDate] = useState ({});
   });
 
   
-  
+  console.log("startDate:", startDate, "enddate :", endDate);
+  console.log("bounds._northEast:", bounds._northEast, "bounds._southWest :", bounds._southWest);
+  console.log("hitscount", post)
+
   return (
       
     <div className="Form">
@@ -100,7 +100,6 @@ const [endDate, setEndDate] = useState ({});
                     name="endDate" 
                     value={endDate.setEndDate} 
                     onChange={handleChanges}/>
-
                 <input 
                     type="button" 
                     value="Submit" 
