@@ -7,25 +7,8 @@ const Maps = () => {
   const [post, setPost] = useState({ hits: [] });
   const [bounds, setBounds] = useState({});
   const [map, setMap] = useState({});
- const [startDate, setStartDate] = useState ({});
-const [endDate, setEndDate] = useState ({});
-
-  function handleChange(evt) {
-    const value = evt.target.value;
-    setStartDate({
-      ...startDate,
-      [evt.target.startDate]: value
-    });
-  }
-
-  function handleChanges(evt) {
-    const value = evt.target.value;
-    setEndDate({
-      ...endDate,
-      [evt.target.endDate]: value
-    });
-  }
-
+ const [startDate, setStartDate] = useState ();
+const [endDate, setEndDate] = useState ();
   
   useEffect(() => {
     if(map.on){
@@ -35,23 +18,36 @@ const [endDate, setEndDate] = useState ({});
     }
   }, [map])
 
+
   useEffect(() => {
 
     if(bounds._northEast && bounds._southWest){
+      
       const northWestX = bounds._northEast.lat;
       const northWestY = bounds._southWest.lng;
 
       const southEastX =  bounds._southWest.lat
       const southEastY =  bounds._northEast.lng
 
-      fetch("http://localhost:3001/search?x1="+northWestX+"&y1="+northWestY+"&x2="+southEastX+"&y2="+southEastY+"&startDate="+startDate+"&endDate="+endDate)
+      if(!startDate && !endDate){
+      fetch("http://localhost:3001/search?x1="+northWestX+"&y1="+northWestY+"&x2="+southEastX+"&y2="+southEastY)
       .then((response) => {
         return response.json();
       })
       .then((result) => {
         setPost(result)
       });
+      }
       
+      fetch("http://localhost:3001/search?x1="+northWestX+"&y1="+northWestY+"&x2="+southEastX+"&y2="+southEastY+"&startDate="+startDate?.toString()+"&endDate="+endDate?.toString())
+      .then((response) => {
+        return response.json();
+      })
+      .then((result) => { 
+        setPost(result)
+      });
+      
+
     }
 
   }, [bounds]);
@@ -68,7 +64,7 @@ const [endDate, setEndDate] = useState ({});
   console.log("startDate:", startDate, "enddate :", endDate);
   console.log("bounds._northEast:", bounds._northEast, "bounds._southWest :", bounds._southWest);
   console.log("hitscount", post)
-
+ 
   return (
       
     <div className="Form">
@@ -78,19 +74,15 @@ const [endDate, setEndDate] = useState ({});
                 <input 
                     type="date" 
                     name="startDate" 
-                    value={startDate.setStartDate} 
-                    onChange={handleChange} />
+                    value={startDate} 
+                    onChange={(e) => setStartDate(e.target.value)} />
 
                 <label>endDate</label>
                 <input 
                     type="date" 
                     name="endDate" 
-                    value={endDate.setEndDate} 
-                    onChange={handleChanges}/>
-                <input 
-                    type="button" 
-                    value="Submit" 
-                    onClick={this} />
+                    value={endDate} 
+                    onChange={(e) => setEndDate(e.target.value)}/>
             </form>
 
  <MapContainer
