@@ -34,6 +34,7 @@ const [endDate, setEndDate] = useState ({});
       })
     }
   }, [map])
+
   useEffect(() => {
 
     if(bounds._northEast && bounds._southWest){
@@ -43,26 +44,14 @@ const [endDate, setEndDate] = useState ({});
       const southEastX =  bounds._southWest.lat
       const southEastY =  bounds._northEast.lng
 
-      
-      if ( startDate.setStartDate && endDate.setEndDate){
-        const startDate = startDate.setStartDate;
-        const endDate = endDate.setEndDate;
-      fetch("http://localhost:3001/search?x1="+northWestX+"&y1="+northWestY+"&x2="+southEastX+"&y2="+southEastY+"&d1="+startDate+"&d2="+endDate)
+      fetch("http://localhost:3001/search?x1="+northWestX+"&y1="+northWestY+"&x2="+southEastX+"&y2="+southEastY+"&startDate="+startDate+"&endDate="+endDate)
       .then((response) => {
         return response.json();
       })
       .then((result) => {
         setPost(result)
       });
-      }
-     
-      fetch("http://localhost:3001/search?x1="+northWestX+"&y1="+northWestY+"&x2="+southEastX+"&y2="+southEastY)
-        .then((response) => {
-          return response.json();
-        })
-        .then((result) => {
-          setPost(result)
-        });
+      
     }
 
   }, [bounds]);
@@ -71,10 +60,8 @@ const [endDate, setEndDate] = useState ({});
     return null;
   }
 
-
-
   const positions = post.hits.map((hit) => {
-    return [hit._source.location.lat, hit._source.location.lon, hit._source.legend];
+    return [hit._source.location.lat, hit._source.location.lon, hit._source.timestampStart];
   });
 
   
@@ -122,9 +109,10 @@ const [endDate, setEndDate] = useState ({});
       {positions.map((position) => {
         return (
           <Marker position={position}>
-            {position.map((legend) => {
-              return <Popup position={legend}>{legend}</Popup>;
+            {position.map((timestampStart) => {
+              return <Popup position={timestampStart}>{timestampStart}</Popup>;
             })}
+            
           </Marker>
         );
       })}
