@@ -50,8 +50,8 @@ const template = `{
     {{#repeat 2}}
     {
       "id": {{@index}},
-      "timestampStart": "{{date '1900' '1950' 'DD/MM/YYYY'}}",
-      "timestampEnd": "{{date '1951' '2022' 'DD/MM/YYYY'}}",
+      "timestampStart": "{{date '1900' '1950' 'DD-MM-YYYY'}}",
+      "timestampEnd": "{{date '1951' '2022' 'DD-MM-YYYY'}}",
       "legend": "{{lorem}}",
       "dob": "{{date '1900' '2000' 'YYYY'}}",
       "address": "{{int 1 100}} {{street}}",
@@ -133,7 +133,7 @@ client
 
 app.get("/search", async (req, res) => {
   const { search } = require("./SearchEngine");
-  const data = await search(req.query.x1, req.query.y1, req.query.x2, req.query.y2);
+  const data = await search(req.query.x1, req.query.y1, req.query.x2, req.query.y2, req.query.startDate, req.query.endDate);
   res.json(data);
 });
 
