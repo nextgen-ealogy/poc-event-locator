@@ -96,20 +96,15 @@ const search = async (x1, y1, x2, y2, startDate, endDate) => {
     if(startDate && endDate ){
 
       query.bool.filter.push({
-        "query": {
-          "bool": {
-            "filter": {
-              "range": {
+        "range": {
                 "timestamp": {
                   "gte": startDate,
                   "lte": endDate
                 }
               }
-            }
-          }
-        }
       })
     }
+
     const searchResult = await client
       .search({
         index: "events",
@@ -153,7 +148,7 @@ const search = async (x1, y1, x2, y2, startDate, endDate) => {
 
 
     .catch((e) => console.log("err", e));
-  console.log(JSON.stringify(searchResult));
+  console.log("searchResult :",JSON.stringify(searchResult));
 
   if (
     searchResult &&
@@ -164,7 +159,6 @@ const search = async (x1, y1, x2, y2, startDate, endDate) => {
   ) {
     hits.push(...searchResult.body.hits.hits);
   }
-
   return {
     hitsCount: hits.length,
     hits,
