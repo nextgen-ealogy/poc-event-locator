@@ -20,9 +20,34 @@ const client = new Client({
 });
 
 // Paris
+const template = `{
+  "events": [
+    {{#repeat 10}}
+    {
+      "id": {{@index}},
+      "timestampStart": "{{date 1900 1950 'yyyy/MM/dd'}}",
+      "timestampEnd": "{{date 1951 2022 'yyyy/MM/dd'}}",
+      "legend": "{{lorem}}",
+      "dob": "{{date '1900' '2000' 'YYYY'}}",
+      "address": "{{int 1 100}} {{street}}",
+      "city": "{{city}}",
+      "zipCode": "{{zipcode}}",
+      "optedin": {{boolean}},
+      "country": "{{country }}",
+      "image": "img{{@index}}.png",
+      "location": {
+          "lat": {{float 48.5 49.26 '0.00'}},
+          "lon": {{float 3.2 1.6 '0.00'}}
+      }
+    }
+    {{/repeat}}
+  ]
+}`;
+
+// Lille
 // const template = `{
 //   "events": [
-//     {{#repeat 5}}
+//     {{#repeat 10}}
 //     {
 //       "id": {{@index}},
 //       "timestampStart": "{{date '1900' '1950' 'DD/MM/YYYY'}}",
@@ -36,38 +61,13 @@ const client = new Client({
 //       "country": "{{country }}",
 //       "image": "img{{@index}}.png",
 //       "location": {
-//           "lat": {{float 48.5 49.26 '0.00'}},
-//           "lon": {{float 3.2 1.6 '0.00'}}
+//         "lat": {{float 50.42 50.77 '0.00'}},
+//         "lon": {{float 2.89 3.27 '0.00'}}
 //       }
 //     }
 //     {{/repeat}}
 //   ]
 // }`;
-
-// Lille
-const template = `{
-  "events": [
-    {{#repeat 2}}
-    {
-      "id": {{@index}},
-      "timestampStart": "{{date '1900' '1950' 'DD-MM-YYYY'}}",
-      "timestampEnd": "{{date '1951' '2022' 'DD-MM-YYYY'}}",
-      "legend": "{{lorem}}",
-      "dob": "{{date '1900' '2000' 'YYYY'}}",
-      "address": "{{int 1 100}} {{street}}",
-      "city": "{{city}}",
-      "zipCode": "{{zipcode}}",
-      "optedin": {{boolean}},
-      "country": "{{country }}",
-      "image": "img{{@index}}.png",
-      "location": {
-        "lat": {{float 50.42 50.77 '0.00'}},
-        "lon": {{float 2.89 3.27 '0.00'}}
-      }
-    }
-    {{/repeat}}
-  ]
-}`;
 
 // const template = `{
 //   "events": [
@@ -133,7 +133,7 @@ client
 
 app.get("/search", async (req, res) => {
   const { search } = require("./SearchEngine");
-  const data = await search(req.query.x1, req.query.y1, req.query.x2, req.query.y2, req.query.startDate, req.query.endDate);
+  const data = await search(req.query.x1, req.query.y1, req.query.x2, req.query.y2, req.query.timestampStart, req.query.timestampEnd);
   res.json(data);
 });
 
