@@ -7,8 +7,8 @@ const Maps = () => {
   const [post, setPost] = useState({ hits: [] });
   const [bounds, setBounds] = useState({});
   const [map, setMap] = useState({});
- const [startDate, setStartDate] = useState ();
-const [endDate, setEndDate] = useState ();
+ const [timestampStart, setTimestampStart] = useState ();
+const [timestampEnd, setTimestampEnd] = useState ();
   
   useEffect(() => {
     if(map.on){
@@ -28,25 +28,27 @@ const [endDate, setEndDate] = useState ();
 
       const southEastX =  bounds._southWest.lat
       const southEastY =  bounds._northEast.lng
-
-      if(!startDate && !endDate){
-      fetch("http://localhost:3001/search?x1="+northWestX+"&y1="+northWestY+"&x2="+southEastX+"&y2="+southEastY)
-      .then((response) => {
-        return response.json();
-      })
-      .then((result) => {
-        setPost(result)
-      });
-      }
+      const timestampStart = new Date(Date.UTC(1900, 11, 20, 3, 23, 16, 738));
+      console.log(timestampStart.toISOString().split('T')[0]);
+      const timestampEnd = new Date(Date.UTC(2021, 11, 20, 3, 23, 16, 738));
+      console.log(timestampEnd.toISOString().split('T')[0]);
+      // fetch("http://localhost:3001/search?x1="+northWestX+"&y1="+northWestY+"&x2="+southEastX+"&y2="+southEastY)
+      // .then((response) => {
+      //   return response.json();
+      // })
+      // .then((result) => {
+      //   setPost(result)
+      // });
       
-      fetch("http://localhost:3001/search?x1="+northWestX+"&y1="+northWestY+"&x2="+southEastX+"&y2="+southEastY+"&startDate="+startDate?.toString()+"&endDate="+endDate?.toString())
+    //   if(startDate && endDate){
+      fetch("http://localhost:3001/search?x1="+northWestX+"&y1="+northWestY+"&x2="+southEastX+"&y2="+southEastY+"&timestampStart="+timestampStart.toISOString().split('T')[0]+"&timestampEnd="+timestampEnd.toISOString().split('T')[0])
       .then((response) => {
         return response.json();
       })
       .then((result) => { 
         setPost(result)
       });
-      
+    // }
 
     }
 
@@ -61,7 +63,7 @@ const [endDate, setEndDate] = useState ();
   });
 
   
-  console.log("startDate:", startDate, "enddate :", endDate);
+  console.log("timestampStart:", timestampStart, "timestampEnd :", timestampEnd);
   console.log("bounds._northEast:", bounds._northEast, "bounds._southWest :", bounds._southWest);
   console.log("hitscount", post)
  
@@ -73,16 +75,21 @@ const [endDate, setEndDate] = useState ();
 
                 <input 
                     type="date" 
-                    name="startDate" 
-                    value={startDate} 
-                    onChange={(e) => setStartDate(e.target.value)} />
+                    name="timestampStart" 
+                    value={timestampStart} 
+                    min="1900-01-01" max="1902-12-31"
+                    onChange={(e) => setTimestampStart(e.target.value)}
+                    
+                     />
+                    
 
                 <label>endDate</label>
                 <input 
                     type="date" 
-                    name="endDate" 
-                    value={endDate} 
-                    onChange={(e) => setEndDate(e.target.value)}/>
+                    name="timestampEnd" 
+                    value={timestampEnd} 
+                    min="1951-01-01"
+                    onChange={(e) => setTimestampEnd(e.target.value)}/>
             </form>
 
  <MapContainer
