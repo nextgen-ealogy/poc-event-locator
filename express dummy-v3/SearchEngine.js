@@ -4,163 +4,50 @@ const client = new Client({ node: "http://localhost:9200" });
 const search = async (x1, y1, x2, y2, timestampStart, timestampEnd) => {
   const hits = [];
   
-
-  // only string values are searchable
-  // const searchResult = await client
-    // .search({
-    //   index: 'point',
-    //   body: {
-    //       "query": {
-    //         "geo_bounding_box": {
-    //           "location": {
-    //             "top_left": {
-    //               "lat": x1,
-    //               "lon":y1
-    //             },
-    //             "bottom_right": {
-    //               "lat": x2,
-    //               "lon": y2
-    //             }
-    //           }
-    //         }
-    //       }
-    //     },
-    //   },
-    // )
-
-// query geo_bounding_box & query
-    // .search({
-    //   index: 'events',
-    //   body: {
-    //     "query": {
-    //       "bool": {
-    //         "must": {
-    //           "match_all": {}
-    //         },
-    //         "filter": {
-    //           "geo_bounding_box": {
-    //             "location": {
-    //               "top_left": {
-    //                 "lat": x1,
-    //                 "lon": y1
-    //               },
-    //               "bottom_right": {
-    //                 "lat": x2,
-    //                 "lon": y2
-    //               }
-    //             }
-    //           }
-    //         }
-    //       }
-    //     },
-    //     "query": {
-    //       "bool": {
-    //         "must": {
-    //           "match_all": {}
-    //         },
-    //         "filter": {
-    //           "range": {
-    //             "timestamp": {
-    //               "gte": d1,
-    //               "lte": d2
-    //             }
-    //           }
-    //         }
-    //       }
-    //     }
-    //     },
-    //   },
-    // )
-
-    const query = {
-      bool: {
-        filter: [
-          {
-            geo_bounding_box: {
-              location: {
-                top_left: {
-                  lat: parseFloat(x1),
-                  lon: parseFloat(y1),
-                },
-                bottom_right: {
-                  lat: parseFloat(x2),
-                  lon: parseFloat(y2),
-                },
+  const query = {
+    bool: {
+      filter: [
+        {
+          geo_bounding_box: {
+            location: {
+              top_left: {
+                lat: parseFloat(x1),
+                lon: parseFloat(y1),
+              },
+              bottom_right: {
+                lat: parseFloat(x2),
+                lon: parseFloat(y2),
               },
             },
-          }
-        ]
-      }
+          },
+        }
+      ]
     }
+  }
 
-    // if(timestampStart && timestampEnd ){
+  query.bool.filter.push({
+    "range": {
+            "timestamp": {
+              "gte": timestampStart,
+              "lte": timestampEnd,
+            }
+          }
+  })
 
-    //   query.bool.filter.push({
-    //     "range": {
-    //             "timestamp": {
-    //               "gte": Date.parse(timestampStart),
-    //               "lte": Date.parse(timestampEnd)
-    //             }
-    //           }
-    //   })
-    // }
+  console.log(query)
 
-    // if(timestampStart && timestampEnd ){
-
-      query.bool.filter.push({
-        "range": {
-                "timestamp": {
-                  "gte": Date.parse(timestampStart),
-                  "lte": Date.parse(timestampEnd),
-                }
-              }
-      })
-    // }
-
-    const searchResult = await client
-      .search({
-        index: "events",
-        body: {
-          size : 100,
-          query: query
-        },
-      })
-
-// query geo_bounding_box & query range timestamp
-    // .search({
-    //   index: "events",
-    //   body: {
-    //     size : 100,
-    //     query: {
-    //       geo_bounding_box: {
-    //         location: {
-    //           top_left: {
-    //             lat: parseFloat(x1),
-    //             lon: parseFloat(y1),
-    //           },
-    //           bottom_right: {
-    //             lat: parseFloat(x2),
-    //             lon: parseFloat(y2),
-    //           },
-    //         },
-    //       },
-    //     },
-    //     "query": {
-    //       "range": {
-    //         "timestamp": {
-    //           "gte": Boolean(d1),
-    //           "lt": Boolean(d2)
-    //         }
-    //       }
-    //     }
-    //   },
-    // })
-
-  
-
-
+  const searchResult = await client
+    .search({
+      index: "events",
+      body: {
+        size : 100,
+        query: query
+      },
+    })
+    
     .catch((e) => console.log("err", e));
-  console.log("searchResult :",JSON.stringify(searchResult));
+    console.log("searchResult :",JSON.stringify(searchResult));
+    console.log(searchResult.body.hits)
 
   if (
     searchResult &&
